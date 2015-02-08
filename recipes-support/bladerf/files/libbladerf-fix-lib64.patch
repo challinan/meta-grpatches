@@ -1,0 +1,12 @@
+diff --git a/host/CMakeLists.txt b/host/CMakeLists.txt
+index d20b605..d6d957e 100644
+--- a/host/CMakeLists.txt
++++ b/host/CMakeLists.txt
+@@ -124,6 +124,7 @@ endif(MSVC)
+ # Linux (TODO determine if this will actually be sufficient for BSD)
+ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR ${CMAKE_SYSTEM_NAME} MATCHES "BSD" OR CYGWIN)
+     set(BLADERF_OS_LINUX 1)
++    set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib64")
+ 
+     if(NOT CMAKE_CROSSCOMPILING AND NOT CYGWIN)
+         message(STATUS "Checking libc version...")
