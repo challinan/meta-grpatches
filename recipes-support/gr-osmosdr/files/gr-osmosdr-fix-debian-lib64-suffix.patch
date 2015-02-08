@@ -1,0 +1,13 @@
+diff --git a/cmake/Modules/GrPlatform.cmake b/cmake/Modules/GrPlatform.cmake
+index 5b7e886..2030278 100644
+--- a/cmake/Modules/GrPlatform.cmake
++++ b/cmake/Modules/GrPlatform.cmake
+@@ -44,7 +44,7 @@ endif()
+ ########################################################################
+ # when the library suffix should be 64 (applies to redhat linux family)
+ ########################################################################
+-if (REDHAT OR SLACKWARE)
++if (REDHAT OR SLACKWARE OR DEBIAN)
+     set(LIB64_CONVENTION TRUE)
+ endif()
+ 

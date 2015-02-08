@@ -1,0 +1,48 @@
+diff --git a/sipgen/main.c b/sipgen/main.c
+index a740cae..b4df6c9 100644
+--- a/sipgen/main.c
++++ b/sipgen/main.c
+@@ -230,6 +230,7 @@ int main(int argc, char **argv)
+         warning(DeprecationWarning, "the -k flag is deprecated\n");
+ 
+     /* Parse the input file. */
++    fprintf(stderr, "sip: main(): parsing file %s, filename %s\n", file, filename); 
+     parse(&spec, file, filename, versions, xfeatures, kwArgs, protHack);
+ 
+     /* Verify and transform the parse tree. */
+diff --git a/sipgen/transform.c b/sipgen/transform.c
+index 36142de..f759bf9 100644
+--- a/sipgen/transform.c
++++ b/sipgen/transform.c
+@@ -115,6 +115,7 @@ void transform(sipSpec *pt)
+     while (cd != NULL)
+     {
+         classDef *next;
++	fprintf(stderr, "sip: transform(): module name %s\n", cd->pyname->text);
+ 
+         /*
+          * Take the opportunity to strip any classes that are only template
+@@ -152,6 +153,7 @@ void transform(sipSpec *pt)
+     {
+         if (mod->name == NULL)
+             fatal("A module is missing a %%Module or %%CModule directive\n");
++	fprintf(stderr, "sip: transform(): mod->name = %s, fullname = %s\n", mod->name, mod->fullname->text);
+ 
+         setAllImports(mod);
+     }
+@@ -180,12 +182,14 @@ void transform(sipSpec *pt)
+     }
+ 
+     /* Check each class has been defined. */
+-    for (cd = pt -> classes; cd != NULL; cd = cd -> next)
++    for (cd = pt -> classes; cd != NULL; cd = cd -> next) {
++	fprintf(stderr, "sip: transform(): check defined for %s\n", cd->pyname->text);
+         if (cd -> iff -> module == NULL)
+         {
+             fatalScopedName(classFQCName(cd));
+             fatal(" has not been defined\n");
+         }
++    }
+ 
+     /*
+      * Set the super-class hierarchy for each class and re-order the list of
