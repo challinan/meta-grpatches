@@ -1,12 +1,14 @@
-diff --git a/host/CMakeLists.txt b/host/CMakeLists.txt
-index d20b605..d6d957e 100644
---- a/host/CMakeLists.txt
-+++ b/host/CMakeLists.txt
-@@ -124,6 +124,7 @@ endif(MSVC)
- # Linux (TODO determine if this will actually be sufficient for BSD)
- if(${CMAKE_SYSTEM_NAME} MATCHES "Linux" OR ${CMAKE_SYSTEM_NAME} MATCHES "BSD" OR CYGWIN)
-     set(BLADERF_OS_LINUX 1)
-+    set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib64")
+diff --git a/host/libraries/libbladeRF/CMakeLists.txt b/host/libraries/libbladeRF/CMakeLists.txt
+index 095df5b..a80dc40 100644
+--- a/host/libraries/libbladeRF/CMakeLists.txt
++++ b/host/libraries/libbladeRF/CMakeLists.txt
+@@ -41,6 +41,9 @@ if (NOT EXISTS "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
+     message(STATUS "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR} does not exist. Defaulting libbladeRF install location to ${CMAKE_INSTALL_PREFIX}/lib.")
+     set(CMAKE_INSTALL_LIBDIR lib)
+ endif()
++# This logic is flawed for cross-compiling using OE.  package libdirs
++# won't exist at config time. Nuking for now.
++set(CMAKE_INSTALL_LIBDIR lib64)
  
-     if(NOT CMAKE_CROSSCOMPILING AND NOT CYGWIN)
-         message(STATUS "Checking libc version...")
+ ################################################################################
+ # Configuration options
