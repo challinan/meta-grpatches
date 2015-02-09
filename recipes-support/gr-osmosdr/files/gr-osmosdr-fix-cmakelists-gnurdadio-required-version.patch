@@ -1,0 +1,13 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 8bc45e9..c38c9b9 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -148,7 +148,7 @@ set(GRC_BLOCKS_DIR      ${GR_PKG_DATA_DIR}/grc/blocks)
+ # Find build dependencies
+ ########################################################################
+ set(GR_REQUIRED_COMPONENTS RUNTIME PMT BLOCKS)
+-find_package(Gnuradio 3.7.3 REQUIRED)
++find_package(Gnuradio)
+ find_package(GnuradioIQBalance)
+ find_package(UHD)
+ find_package(GnuradioUHD)
