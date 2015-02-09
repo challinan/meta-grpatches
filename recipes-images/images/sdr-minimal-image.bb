@@ -9,6 +9,7 @@ CORE_IMAGE_EXTRA_INSTALL += "\
     directfb-examples \
     python-pyqt \
     packagegroup-sdr-minimal \
+    packagegroup-qt5 \
     xauth \
     "
 inherit core-image
